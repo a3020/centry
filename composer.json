@@ -1,0 +1,10 @@
+{
+    "name": "a3020/centry",
+    "description": "Allows communication from concrete5 to Centry Portal.",
+    "type": "concrete5-package",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "concrete5/core": "^8.2"
+    }
+}
