@@ -19,3 +19,11 @@ $ ./vendor/bin/concrete5 c5:package-install centry
 ## More info
 - https://www.concrete5.org/marketplace/addons/centry/
 - https://a3020.com/centry.php
+
+
+[ico-version]: https://img.shields.io/packagist/v/a3020/centry.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/a3020/centry.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/a3020/centry
+[link-downloads]: https://packagist.org/packages/a3020/centry
