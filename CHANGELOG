@@ -1,3 +1,7 @@
+2.0.9
+- Use 'extend' on the container object to wrap the Centry middleware
+  which makes it easier for other developers to extend.
+
 2.0.8
 - Fix upgrade bug where config variable was undefined.
 

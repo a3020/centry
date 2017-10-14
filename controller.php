@@ -18,7 +18,7 @@ final class Controller extends Package
 {
     protected $pkgHandle = 'centry';
     protected $appVersionRequired = '8.0';
-    protected $pkgVersion = '2.0.8';
+    protected $pkgVersion = '2.0.9';
     protected $pkgAutoloaderRegistries = [
         'src/Centry' => '\A3020\Centry',
     ];
@@ -43,9 +43,11 @@ final class Controller extends Package
         // Can be overridden via the settings page.
         define('CENTRY_PORTAL_DEFAULT_ENDPOINT', self::CENTRY_PORTAL_DEFAULT_ENDPOINT);
 
-        $server = $this->app->make(ServerInterface::class);
-        $server->addMiddleware($this->app->make(CentryEnabledMiddleware::class));
-        $server->addMiddleware($this->app->make(CentryApiTokenMiddleware::class));
+        // This allows other devs to extend and add middleware as well.
+        $this->app->extend(ServerInterface::class, function(ServerInterface $server) {
+            return $server->addMiddleware($this->app->make(CentryEnabledMiddleware::class))
+                ->addMiddleware($this->app->make(CentryApiTokenMiddleware::class));
+        });
 
         Route::register('/centry/api/v'.CENTRY_INSTANCE_API_VERSION, function() {
             $api = $this->app->make(\Concrete\Package\Centry\Controller\Api\Api::class);
