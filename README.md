@@ -7,7 +7,7 @@
 To install this package on a composer based concrete5 site, make sure you already have composer/installers then run:
 
 ```sh
-$ composer install a3020/centry
+$ composer require a3020/centry
 ```
 
 Then install the package:
