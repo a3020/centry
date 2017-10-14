@@ -17,7 +17,7 @@ class CentryApiTokenMiddleware implements MiddlewareInterface, ApplicationAwareI
 
     public function process(Request $request, DelegateInterface $frame)
     {
-        $requestUri = $request->getRequestUri();
+        $requestUri = strtolower($request->getRequestUri());
 
         if (strpos($requestUri, 'centry/api') !== false) {
             if (!$this->isAuthorized($request)) {
