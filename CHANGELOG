@@ -1,3 +1,7 @@
+2.0.10
+- Make sure the middleware checks URIs case insensitive.
+- Indicate whether a job is queueable or not.
+
 2.0.9
 - Use 'extend' on the container object to wrap the Centry middleware
   which makes it easier for other developers to extend.
