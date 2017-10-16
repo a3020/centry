@@ -43,6 +43,7 @@ final class Payload extends PayloadAbstract
                 'job_last_run' => $job->getJobDateLastRun() ? strtotime($job->getJobDateLastRun()) : null,
                 'job_schedule_interval' => $job->isScheduled ? $job->scheduledInterval : null,
                 'job_schedule_value' => $job->isScheduled ? $job->scheduledValue : null,
+                'job_is_queueable' => $job->supportsQueue(),
             ];
         }, $jobs);
     }
