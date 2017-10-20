@@ -1,3 +1,7 @@
+2.0.11
+- Expose 'total_logs' via 'logs_summary' API call.
+- Don't expose the 'last_exceptions' via the 'logs_summary' API call.
+
 2.0.10
 - Make sure the middleware checks URIs case insensitive.
 - Indicate whether a job is queueable or not.

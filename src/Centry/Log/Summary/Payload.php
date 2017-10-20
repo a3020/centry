@@ -18,32 +18,25 @@ final class Payload extends PayloadAbstract
     public function jsonSerialize()
     {
         return [
+            'total_logs' => $this->getTotalLogs(),
             'total_exceptions' => $this->getTotalExceptions(),
-            'last_exceptions' => $this->getLastExceptions(15),
         ];
+    }
+
+    private function getTotalLogs()
+    {
+        return (int) $this->db->fetchColumn("
+            SELECT COUNT(1)
+            FROM Logs
+        ");
     }
 
     private function getTotalExceptions()
     {
         return (int) $this->db->fetchColumn("
-            SELECT COUNT(1) 
+            SELECT COUNT(1)
             FROM Logs
             WHERE channel = 'exceptions'
         ");
-    }
-
-    /**
-     * @param $limit
-     * @return int
-     */
-    private function getLastExceptions($limit)
-    {
-        return (array) $this->db->fetchAll("
-            SELECT message, time, uID
-            FROM Logs
-            WHERE channel = 'exceptions'
-            ORDER BY logID DESC
-            LIMIT 0, ".$limit
-        );
     }
 }
