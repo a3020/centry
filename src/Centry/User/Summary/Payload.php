@@ -30,7 +30,10 @@ final class Payload extends PayloadAbstract
     private function getTotalUsers()
     {
         $ul = new UserList();
-        $ul->ignorePermissions();
+        if (method_exists($ul, 'ignorePermissions')) {
+            // This method doesn't exist in v8.0
+            $ul->ignorePermissions();
+        }
         return (int) $ul->getTotalResults();
     }
 
