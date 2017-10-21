@@ -1,3 +1,7 @@
+2.0.12
+- Fix 'ignorePermissions' compatibility bug in 8.0.
+- Fix JsonResponse bug in 8.0 where API response wasn't recognized as JSON.
+
 2.0.11
 - Expose 'total_logs' via 'logs_summary' API call.
 - Don't expose the 'last_exceptions' via the 'logs_summary' API call.
