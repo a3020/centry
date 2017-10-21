@@ -22,7 +22,9 @@ class Api extends Controller
             ], 501);
         }
 
-        return new JsonResponse($this->{$method}());
+        $response = new JsonResponse($this->{$method}());
+        $response->send();
+        exit;
     }
 
     /**
