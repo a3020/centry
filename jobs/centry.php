@@ -42,7 +42,7 @@ final class Centry extends Job
             'config' => $this->config,
             'jobUrl' => $this->getJobUrl(),
             'apiEndpoint' => $this->getApiEndpoint(),
-            'apiToken' => $this->getApiToken(),
+            'apiToken' => $this->getAndUpdateApiToken(),
         ]);
 
         try {
@@ -158,32 +158,47 @@ final class Centry extends Job
     }
 
     /**
-     * Token to receive calls from external applications.
+     * @return \League\URL\URLInterface
+     */
+    private function getApiEndpoint()
+    {
+        return Url::to('/centry/api/v' . CENTRY_INSTANCE_API_VERSION);
+    }
+
+    /**
+     * Retrieve or regenerate API token.
+     *
+     * If token regeneration is disabled, we retrieve
+     * an existing API token from the config.
+     *
+     * @return string
+     */
+    private function getAndUpdateApiToken()
+    {
+        if ($this->config->get('centry.api.regenerate_token')) {
+            $this->config->save('centry.api.token', $this->generateApiToken());
+        }
+
+        $token = (string) $this->config->get('centry.api.token');
+        return $token ?? $this->generateApiToken();
+    }
+
+    /**
+     * Generates an API token.
+     *
+     * The token is used to receive calls from external applications.
      *
      * The API token will be sent to Centry and stored encrypted.
      * Centry is then able to send requests to this C5 instance.
      *
      * You can change the API token if you'd like.
      * Just make sure you subscribe to Centry afterwards,
-     * so Centry has the most up to date token(s).
+     * so Centry has the most up to date API token.
      *
      * @return string
      */
-    private function getApiToken()
+    private function generateApiToken()
     {
-        $apiToken = $this->config->get('centry.api_token');
-        if (!$apiToken) {
-            $this->config->save('centry.api_token', str_random(64));
-        }
-
-        return $apiToken;
-    }
-
-    /**
-     * @return \League\URL\URLInterface
-     */
-    private function getApiEndpoint()
-    {
-        return Url::to('/centry/api/v' . CENTRY_INSTANCE_API_VERSION);
+        return str_random(64);
     }
 }
