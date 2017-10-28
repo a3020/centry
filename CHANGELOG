@@ -1,3 +1,7 @@
+2.1.0
+- Add a setting to enable API token regeneration.
+- Save the regenerated API token after a successful subscription request.
+
 2.0.12
 - Fix 'ignorePermissions' compatibility bug in 8.0.
 - Fix JsonResponse bug in 8.0 where API response wasn't recognized as JSON.
