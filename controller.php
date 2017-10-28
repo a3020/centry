@@ -78,6 +78,7 @@ final class Controller extends Package
 
         $this->config->save('centry.enabled', true);
         $this->config->save('centry.endpoint', self::CENTRY_PORTAL_DEFAULT_ENDPOINT);
+        $this->config->save('centry.api.regenerate_token', true);
     }
 
     public function upgrade()

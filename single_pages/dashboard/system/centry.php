@@ -10,6 +10,7 @@ use Concrete\Core\Support\Facade\Url;
 /** @var $shouldShowSubscribeButton bool */
 /** @var $linkToCentryPortal string */
 /** @var $showJobScheduleSection bool */
+/** @var $endpoint string */
 /** @var $job \Concrete\Package\Centry\Job\Centry */
 /** @var $apiMethods array */
 ?>
@@ -85,6 +86,19 @@ use Concrete\Core\Support\Facade\Url;
                 ?>
                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
             </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label launch-tooltip"
+                   title="<?php echo t("You can improve security by regenerating an API token each time Centry subscribes to the portal."); ?>"
+                   for="regenerate_token">
+                <?php
+                echo $form->checkbox('regenerate_token', 1, (bool) $config->get('centry.api.regenerate_token'));
+                ?>
+                <?php
+                echo t('Regenerate API token each time subscriptions are updated');
+                ?>
+            </label>
         </div>
 
         <div class="form-group">
