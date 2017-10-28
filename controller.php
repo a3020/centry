@@ -159,4 +159,12 @@ final class Controller extends Package
             $this->config->save('centry.identifier', str_random(32));
         }
     }
+
+    public function uninstall()
+    {
+        parent::uninstall();
+
+        $db = $this->app->make('database')->connection();
+        $db->executeQuery("DROP TABLE IF EXISTS CentrySchedules");
+    }
 }
