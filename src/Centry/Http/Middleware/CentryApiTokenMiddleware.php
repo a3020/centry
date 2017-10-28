@@ -49,6 +49,6 @@ class CentryApiTokenMiddleware implements MiddlewareInterface, ApplicationAwareI
         }
 
         $config = $this->app->make(Repository::class);
-        return  $token === (string) $config->get('centry.api_token');
+        return  $token === (string) $config->get('centry.api.token');
     }
 }
