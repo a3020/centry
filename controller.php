@@ -31,6 +31,8 @@ final class Controller extends Package
 
     public function on_start()
     {
+        $this->loadDependencies();
+
         $this->config = $this->app->make(Repository::class);
 
         $this->saveDomain();
@@ -166,5 +168,19 @@ final class Controller extends Package
 
         $db = $this->app->make('database')->connection();
         $db->executeQuery("DROP TABLE IF EXISTS CentrySchedules");
+    }
+
+    /**
+     * Load Composer files.
+     *
+     * If the C5 installation is Composer based, the vendor directory will
+     * be in the root directory. Therefore we first check if it's present.
+     */
+    private function loadDependencies()
+    {
+        $autoloadFile = $this->getPackagePath() . '/vendor/autoload.php';
+        if (file_exists($autoloadFile)) {
+            require_once $autoloadFile;
+        }
     }
 }
