@@ -2,6 +2,7 @@
 
 namespace A3020\Centry\Entity;
 
+use Cron\CronExpression;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,5 +67,16 @@ class Schedule
     public function setJobHandles($jobHandles)
     {
         $this->jobHandles = (array) $jobHandles;
+    }
+
+    /**
+     * Returns true if we need to run this Schedule.
+     *
+     * @return bool
+     */
+    public function isDue()
+    {
+        $cron = CronExpression::factory($this->getCronExpression());
+        return $cron->isDue();
     }
 }
