@@ -2,31 +2,10 @@
 
 namespace Concrete\Package\Centry\Controller\Api;
 
-use Concrete\Core\Config\Repository\Repository;
-use Concrete\Core\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use A3020\Centry\Controller\ApiBase;
 
-class Api extends Controller
+class Api extends ApiBase
 {
-    public function invoke($method)
-    {
-        if (!$this->isMethodAllowed($method)) {
-            return new JsonResponse([
-                'error' => t('Method Not Allowed'),
-            ], 405);
-        }
-
-        if (!$this->isMethodImplemented($method)) {
-            return new JsonResponse([
-                'error' => t('Method Not Implemented'),
-            ], 501);
-        }
-
-        $response = new JsonResponse($this->{$method}());
-        $response->send();
-        exit;
-    }
-
     /**
      * @todo to be implemented
      */
@@ -85,27 +64,9 @@ class Api extends Controller
         return $this->app->make(\A3020\Centry\Log\Summary\Payload::class);
     }
 
-    /**
-     * Return false if method is disabled via the config.
-     *
-     * @param string $method
-     * @return bool
-     */
-    private function isMethodAllowed($method)
+    protected function schedules__post()
     {
-        $config = $this->app->make(Repository::class);
-
-        return (bool) $config->get('centry.api.methods.'.$method, true);
-    }
-
-    /**
-     * Return false if the method is not implemented.
-     *
-     * @param string $method
-     * @return bool
-     */
-    private function isMethodImplemented($method)
-    {
-        return method_exists($this, $method);
+        $controller = $this->app->make(\A3020\Centry\Schedule\StoreSchedules::class);
+        return $controller->handle();
     }
 }
