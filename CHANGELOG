@@ -1,3 +1,7 @@
+2.1.2
+- Use a service provider to bootstrap the package.
+- Add a console command to run schedules.
+
 2.1.1
 - Add ability to store schedules created by Centry Portal.
 
