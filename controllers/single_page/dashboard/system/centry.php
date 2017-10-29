@@ -5,7 +5,6 @@ namespace Concrete\Package\Centry\Controller\SinglePage\Dashboard\System;
 use Concrete\Core\Config\Repository\Repository;
 use Concrete\Core\Job\Job;
 use Concrete\Core\Page\Controller\DashboardPageController;
-use Concrete\Core\Url\Resolver\CanonicalUrlResolver;
 use Concrete\Core\Url\Resolver\PathUrlResolver;
 
 final class Centry extends DashboardPageController
@@ -155,6 +154,8 @@ final class Centry extends DashboardPageController
             'files_summary' => t('Files summary'),
             'users_summary' => t('Users summary'),
             'logs_summary' => t('Logs summary'),
+            'schedules' => t('Schedules'),
+            'schedules__post' => t('Schedules (write)'),
         ];
     }
 
