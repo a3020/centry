@@ -27,6 +27,7 @@ final class Payload extends PayloadAbstract
             'php_version' => $this->getPhpVersion(),
             'ip_address' => $this->getIpAddress(),
             'overrides' => $this->getOverrides(),
+            'document_root' => $this->getDocumentRoot(),
         ];
     }
 
@@ -56,5 +57,17 @@ final class Payload extends PayloadAbstract
         }
 
         return explode(', ', $info->getOverrides());
+    }
+
+    /**
+     * Return DocumentRoot of current installation.
+     *
+     * Available from version 2.1.3.
+     *
+     * @return string
+     */
+    private function getDocumentRoot()
+    {
+        return (string) $_SERVER["DOCUMENT_ROOT"];
     }
 }
