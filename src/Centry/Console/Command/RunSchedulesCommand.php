@@ -3,8 +3,7 @@
 namespace A3020\Centry\Console\Command;
 
 use A3020\Centry\Entity\Schedule;
-use Concrete\Core\Console\Command;
-use Concrete\Core\Console\ConsoleAwareInterface;
+use Symfony\Component\Console\Command\Command;
 use Concrete\Core\Job\Job;
 use Concrete\Core\Support\Facade\Application;
 use Doctrine\ORM\EntityManager;
@@ -42,12 +41,6 @@ class RunSchedulesCommand extends Command
         $formatter = $this->getHelper('formatter');
         foreach ($this->getJobs($schedule) as $job) {
             /** @var Job $job */
-
-            // Provide the console objects to objects that are aware of the console
-            if ($job instanceof ConsoleAwareInterface) {
-                $job->setConsole($this->getApplication(), $output, $input);
-            }
-
             $result = $job->executeJob();
             if ($result->isError()) {
                 if ($output->getVerbosity() >= OutputInterface::VERBOSITY_NORMAL) {
