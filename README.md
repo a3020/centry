@@ -16,6 +16,10 @@ Then install the package:
 $ ./vendor/bin/concrete5 c5:package-install centry
 ```
 
+## Screenshot
+
+![Centry Portal](https://user-images.githubusercontent.com/1431100/32143097-cdb4a1d2-bca4-11e7-9256-b3f28ae3da0c.png)
+
 ## More info
 - https://centry.nl
 - https://www.concrete5.org/marketplace/addons/centry/
