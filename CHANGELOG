@@ -1,3 +1,6 @@
+2.1.1
+- Add ability to store schedules created by Centry Portal.
+
 2.1.0
 - Add a setting to enable API token regeneration.
 - Save the regenerated API token after a successful subscription request.

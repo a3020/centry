@@ -5,6 +5,7 @@
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
-        "concrete5/core": "^8.2"
+        "concrete5/core": "^8.2",
+        "dragonmantank/cron-expression": "dev-master#v1.2.0"
     }
 }
