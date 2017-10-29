@@ -2,25 +2,22 @@
 
 namespace A3020\Centry\Log;
 
-use A3020\Centry\Event\OnCentryGetLogs;
 use A3020\Centry\Payload\PayloadAbstract;
+use Concrete\Core\Config\Repository\Repository;
 use Concrete\Core\Database\Connection\Connection;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final class Payload extends PayloadAbstract
 {
-    const MAX_NUMBER_OF_LOGS = 300;
-
     /** @var Connection */
     private $db;
 
-    /** @var EventDispatcherInterface */
-    private $director;
+    /** @var Repository */
+    private $config;
 
-    public function __construct(Connection $db, EventDispatcherInterface $director)
+    public function __construct(Connection $db, Repository $config)
     {
         $this->db = $db;
-        $this->director = $director;
+        $this->config = $config;
     }
 
     public function jsonSerialize()
@@ -30,17 +27,9 @@ final class Payload extends PayloadAbstract
 
     private function getLogs()
     {
-        /** @var OnCentryGetLogs $event */
-        $event = new OnCentryGetLogs();
-        $event = $this->director->dispatch('on_centry_get_logs', new $event);
-
-        if ($event->getLogs()) {
-            return $event->getLogs();
-        }
-
         $logs = $this->db->fetchAll('
             SELECT * FROM Logs
-            LIMIT ' . static::MAX_NUMBER_OF_LOGS
+            LIMIT ' . $this->getMaxNumberOfLogs()
         );
 
         return array_map(function($log) {
@@ -53,5 +42,10 @@ final class Payload extends PayloadAbstract
                 'log_user_id' => $log['uID'] ? (int) $log['uID'] : null,
             ];
         }, $logs);
+    }
+
+    private function getMaxNumberOfLogs()
+    {
+        return (int) $this->config->get('centry.api.logs.max', 300);
     }
 }
