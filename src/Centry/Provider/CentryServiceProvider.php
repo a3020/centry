@@ -2,6 +2,7 @@
 
 namespace A3020\Centry\Provider;
 
+use A3020\Centry\Console\Command\RunSchedulesCommand;
 use A3020\Centry\Http\Middleware\CentryApiTokenMiddleware;
 use A3020\Centry\Http\Middleware\CentryEnabledMiddleware;
 use Concrete\Core\Application\Application;
@@ -32,6 +33,10 @@ class CentryServiceProvider
 
         $this->registerMiddleware();
         $this->registerRoutes();
+
+        if ($this->app->isRunThroughCommandLineInterface()) {
+            $this->registerConsoleCommands();
+        }
     }
 
     /**
@@ -57,6 +62,12 @@ class CentryServiceProvider
             $api = $this->app->make(Api::class);
             return $api->invoke($method);
         });
+    }
+
+    private function registerConsoleCommands()
+    {
+        $console = $this->app->make('console');
+        $console->add(new RunSchedulesCommand());
     }
 
     /**
