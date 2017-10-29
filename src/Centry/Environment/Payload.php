@@ -26,8 +26,8 @@ final class Payload extends PayloadAbstract
             'c5_version' => $this->getC5Version(),
             'php_version' => $this->getPhpVersion(),
             'ip_address' => $this->getIpAddress(),
+            'base_directory_path' => $this->getBaseDirectoryPath(),
             'overrides' => $this->getOverrides(),
-            'document_root' => $this->getDocumentRoot(),
         ];
     }
 
@@ -60,14 +60,14 @@ final class Payload extends PayloadAbstract
     }
 
     /**
-     * Return DocumentRoot of current installation.
+     * Return absolute root path of current installation.
      *
      * Available from version 2.1.3.
      *
      * @return string
      */
-    private function getDocumentRoot()
+    private function getBaseDirectoryPath()
     {
-        return (string) $_SERVER["DOCUMENT_ROOT"];
+        return DIR_BASE;
     }
 }
