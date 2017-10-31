@@ -29,6 +29,7 @@ final class Payload extends PayloadAbstract
     {
         $logs = $this->db->fetchAll('
             SELECT * FROM Logs
+            ORDER BY logID DESC
             LIMIT ' . $this->getMaxNumberOfLogs()
         );
 
