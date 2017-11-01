@@ -15,8 +15,11 @@ class RunSchedulesCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('centry:run-schedules')
-            ->setDescription('Run automated job schedules');
+            ->setName('centry:schedule')
+            ->setAliases([
+                'centry:run-schedules',
+            ])
+            ->setDescription('Run Centry schedules');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
