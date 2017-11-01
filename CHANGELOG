@@ -1,3 +1,9 @@
+2.1.4
+- Order logs descending, to only send the latest log entries.
+- Use DIR_BASE instead of the document root.
+- Use a config setting to define max number of log entries synced.
+- 8.0.0 compatibility fixes.
+
 2.1.3
 - Add document root path to 'environment' API call.
 
