@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.txt)
-[![Total Downloads][ico-downloads]][link-downloads]
 
 ## Introduction
 Centry allows you to connect concrete5 websites with a centralized portal.
@@ -41,7 +40,5 @@ With the self-hosted version you get full access to the source code.
 
 [ico-version]: https://img.shields.io/packagist/v/a3020/centry.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/a3020/centry.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/a3020/centry
-[link-downloads]: https://packagist.org/packages/a3020/centry
