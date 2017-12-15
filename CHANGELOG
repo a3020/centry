@@ -1,3 +1,6 @@
+2.1.5
+- Fix PHP 5.6 compatibility.
+
 2.1.4
 - Order logs descending, to only send the latest log entries.
 - Use DIR_BASE instead of the document root.

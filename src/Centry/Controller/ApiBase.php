@@ -65,6 +65,6 @@ class ApiBase extends Controller
             $verb = 'post';
         }
 
-        return $verb ?? 'get';
+        return isset($verb) ? $verb : 'get';
     }
 }

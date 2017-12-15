@@ -180,7 +180,7 @@ final class Centry extends Job
         }
 
         $token = (string) $this->config->get('centry.api.token');
-        return $token ?? $this->generateApiToken();
+        return $token ? $token : $this->generateApiToken();
     }
 
     /**
