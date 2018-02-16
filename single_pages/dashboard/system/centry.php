@@ -47,15 +47,6 @@ use Concrete\Core\Support\Facade\Url;
         ?>
 
         <div class="form-group">
-            <label>
-                <?php
-                echo $form->checkbox('enabled', 1, (bool) $config->get('centry.enabled'));
-                ?>
-                <?php echo t('Enable Centry'); ?>
-            </label>
-        </div>
-
-        <div class="form-group">
             <label class="control-label launch-tooltip"
                    title="<?php echo t("Centry will communicate with this endpoint. The exact URL can be found on the Centry settings page."); ?>"
                    for="auth_token">
@@ -88,55 +79,82 @@ use Concrete\Core\Support\Facade\Url;
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label launch-tooltip"
-                   title="<?php echo t("You can improve security by regenerating an API token each time Centry subscribes to the portal."); ?>"
-                   for="regenerate_token">
-                <?php
-                echo $form->checkbox('regenerate_token', 1, (bool) $config->get('centry.api.regenerate_token'));
-                ?>
-                <?php
-                echo t('Regenerate API token each time subscriptions are updated');
-                ?>
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label launch-tooltip"
-                   title="<?php echo t("Each unique domain will automatically be added to this config setting. " .
-                       "You can delete 'old' domains if needed. For each domain a record will be created in Centry."); ?>"
-                   for="domains">
-                <?php echo t('Domains'); ?>
-            </label>
-            <?php
-            echo $form->textarea('domains', implode("\n", $config->get('centry.domains')), [
-                'placeholder' => t('Domains will be populated automatically.'),
-            ]);
-            ?>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label launch-tooltip"
-               title="<?php echo t("In case you want to limit what data external applications can request, " .
-                   "you can deselect one or more options below."); ?>">
-                <?php echo t('External application access'); ?>
-            </label>
-
-            <div style="column-count: 2;">
-                <?php
-                foreach ($apiMethods as $apiMethodHandle => $apiMethodName) {
-                    ?>
-                    <div class="input-group">
-                        <label>
-                            <?php
-                            echo $form->checkbox('api_access_'.$apiMethodHandle, 1, (bool) $config->get('centry.api.methods.'.$apiMethodHandle, true));
-                            ?>
-                            <?php echo $apiMethodName; ?>
-                        </label>
+        <div class="clearfix">
+            <div class="pull-right">
+                <a href="#" class="toggle-advanced-settings">
+                    <div class="caption show-caption">
+                        <?php echo t('Show advanced settings'); ?> <i class="fa fa-angle-down"></i>
                     </div>
-                    <?php
-                }
+                    <div class="caption hide-caption hide">
+                        <?php echo t('Hide advanced settings'); ?> <i class="fa fa-angle-up"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="advanced-settings hide">
+            <div class="form-group">
+                <div>
+                    <label class="control-label launch-tooltip"
+                           title="<?php echo t("If disabled, Centry won't do anything and the API will become inactive."); ?>"
+                           for="enabled">
+                        <?php
+                        echo $form->checkbox('enabled', 1, (bool) $config->get('centry.enabled'));
+                        ?>
+                        <?php echo t('Enable Centry'); ?>
+                    </label>
+                </div>
+                <div>
+                    <label class="control-label launch-tooltip"
+                           title="<?php echo t("You can improve security by regenerating an API token each time Centry subscribes to the portal."); ?>"
+                           for="regenerate_token">
+                        <?php
+                        echo $form->checkbox('regenerate_token', 1, (bool) $config->get('centry.api.regenerate_token'));
+                        ?>
+                        <?php
+                        echo t('Regenerate API token each time subscriptions are updated');
+                        ?>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label launch-tooltip"
+                       title="<?php echo t("Each unique domain will automatically be added to this config setting. " .
+                           "You can delete 'old' domains if needed. For each domain a record will be created in Centry."); ?>"
+                       for="domains">
+                    <?php echo t('Domains'); ?>
+                </label>
+                <?php
+                echo $form->textarea('domains', implode("\n", $config->get('centry.domains')), [
+                    'placeholder' => t('Domains will be populated automatically.'),
+                ]);
                 ?>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label launch-tooltip"
+                   title="<?php echo t("In case you want to limit what data external applications can request, " .
+                       "you can deselect one or more options below."); ?>">
+                    <?php echo t('External application access'); ?>
+                </label>
+
+                <div style="column-count: 2;">
+                    <?php
+                    foreach ($apiMethods as $apiMethodHandle => $apiMethodName) {
+                        ?>
+                        <div class="input-group">
+                            <label>
+                                <?php
+                                echo $form->checkbox('api_access_'.$apiMethodHandle, 1, (bool) $config->get('centry.api.methods.'.$apiMethodHandle, true));
+                                ?>
+                                <?php echo $apiMethodName; ?>
+                            </label>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
             </div>
         </div>
 
@@ -212,5 +230,11 @@ use Concrete\Core\Support\Facade\Url;
         <?php
     }
     ?>
-</div>
 
+    <script>
+        $('.toggle-advanced-settings').click(function() {
+            $('.advanced-settings').toggleClass('hide');
+            $(this).find('.caption').toggleClass('hide');
+        });
+    </script>
+</div>
