@@ -17,7 +17,6 @@ final class Centry extends DashboardPageController
 
         $this->set('endpoint', $this->getEndpoint());
         $this->set('shouldShowSubscribeButton', $this->getShouldShowSubscribeButton());
-        $this->set('showJobScheduleSection', $this->getShouldShowJobScheduleSection());
         $this->set('job', $this->getJob());
         $this->set('config', $config);
         $this->set('apiMethods', $this->getApiMethods());
@@ -58,22 +57,6 @@ final class Centry extends DashboardPageController
 
         return $this->redirect('/dashboard/system/centry');
     }
-    
-    public function schedule()
-    {
-        /** @var Job $job */
-        $job = Job::getByHandle('centry');
-        if (!$job) {
-            $this->flash('error', t('The Centry job is not installed!'));
-            return $this->redirect('/dashboard/system/centry');
-        }
-
-        $job->setSchedule(true, 'days', 1);
-
-        $this->flash('success', t('The Centry job is now scheduled to run daily.'));
-
-        return $this->redirect('/dashboard/system/centry');
-    }
 
     /**
      * @return bool
@@ -91,23 +74,6 @@ final class Centry extends DashboardPageController
 
         $job = $this->getJob();
         if (!$job) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * @return bool
-     */
-    private function getShouldShowJobScheduleSection()
-    {
-        if (!$this->isConfiguredProperly()) {
-            return false;
-        }
-
-        $job = $this->getJob();
-        if ($job->isScheduled) {
             return false;
         }
 

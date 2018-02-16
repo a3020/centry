@@ -20,7 +20,7 @@ use Concrete\Core\Support\Facade\Url;
         title="<?php echo t('Open Centry Portal in a new tab.'); ?>"
         href="<?php echo $linkToCentryPortal ?>"
         target="_blank"
-        class="btn btn-success">
+        class="btn btn-default">
         <?php echo t('Open Centry Portal') ?>
         <i class="fa fa-external-link"></i>
     </a>
@@ -32,7 +32,7 @@ use Concrete\Core\Support\Facade\Url;
             title="<?php echo t('This will subscribe the domain(s) in Centry.'); ?>"
             href="<?php echo $job->getJobUrl() ?>"
             class="btn btn-success btn-register">
-            <?php echo t('Update subscriptions') ?>&nbsp;
+            <?php echo t('Sync with portal') ?>&nbsp;
             <i class="fa fa-refresh"></i>
         </a>
         <?php
@@ -170,25 +170,6 @@ use Concrete\Core\Support\Facade\Url;
             </div>
         </div>
     </form>
-
-    <?php
-    if ($showJobScheduleSection) {
-        ?>
-        <div class="well">
-            <p>
-                <?php
-                echo t("Do you want to enable automatic registration on a daily basis?"
-                );
-                ?>
-            </p>
-
-            <a href="<?php echo $this->action('schedule'); ?>" class="btn btn-default">
-                <?php echo t('Yes, register daily'); ?>
-            </a>
-        </div>
-        <?php
-    }
-    ?>
 
     <?php
     if ($shouldShowSubscribeButton) {
