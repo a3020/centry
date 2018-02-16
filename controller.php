@@ -82,12 +82,7 @@ final class Controller extends Package
             $job = Job::installByPackage('centry', $pkg);
         }
 
-        // Companies running hundreds of websites can use CLI
-        // to configure the add-on, e.g. with:
-        // c5:config set centry.schedule_job_on_install true
-        if ($this->config->get('centry.schedule_job_on_install')) {
-            $job->setSchedule(true, 'days', 1);
-        }
+        $job->setSchedule(true, 'days', 1);
     }
 
     private function installDashboardPage($pkg)
