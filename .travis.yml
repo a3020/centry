@@ -6,6 +6,10 @@ php:
 - 7.1
 - 7.2
 
+env:
+ global:
+ - REPO=centry
+
 before_install:
   - sudo apt-get install zip -y
 
@@ -16,15 +20,15 @@ script: true
 before_deploy:
 - rm .travis.yml
 - cd ..
-- zip -r ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.zip ${REPO}
-- tar -zcf ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.tar.gz ${REPO}
+- zip -r centry.zip ${REPO}
+- tar -zcf centry.tar.gz ${REPO}
 
 deploy:
   provider: releases
   api_key:
     secure: VGBAXoxSZJTENpkFq8Dt98SWATj3HfqiNpVGFtEJ4mTnCoCQ7xmfKZhBZ/p7uHkRFRY6LVEX8QfOSYoQ8WEMICMPT6aJWUQS76iaVv6vimxx5ABAU66iBpOOJhLjvwbmTFzfGVmDGTiJezFSPYXbwm5xnK6P7twdCLXlocQFQRksqjHn2Upd5zg5vkfwyl9Li0oDztYL54AH/yqrbr8Yhrh/T8xx789Dss0Omidn26t1phRimQEw5aMYnKSVQplQeLAZpA7nV4C/lGdQzRhyrdnb934Pu5NYfSRZW8WvcMopNk9qAmH48xlnBtUiPGBnbcmRi1QKMQ4gcVEU9yyDu2Lvftcd26+pkPp36tomH3i9cCEUxM0NXgz7Su7WjXwH9u7vHOzAyUsGnzyfmGgvi9yrYmNYuZaWHzbXYtUAEESjxWDfuH/ifgAFOnlpNC1P87pQXyOrcW7Uuc4ppeVlQ7UqY2ViSM/c6PKsd6XnrUtu2IueNMAClkLaNZ9c/3mVUADRLHM3m+GLCGV3OowWNjHzC/G/tWy8dUGYKf+NjIBavuc5PWTMW3W8ApNv+IimogwNnroL6IIwiWTpeIPMfjjMYvfZ4AivUSwe75LgNRjKOM2jdHyMXOnPDbHWUQ4oIH2gLErH0pMBDIfDZpVR6+nBxj7C4R2peurK5N+wPYc=
-  file: ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.zip
-  file: ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.tar.gz
+  file: centry.zip
+  file: centry.tar.gz
   on:
     repo: a3020/centry
     tags: true
