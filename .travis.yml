@@ -20,6 +20,9 @@ script: true
 before_deploy:
 - echo ${TRAVIS_BUILD_DIR}
 - rm .travis.yml
+- rm composer.json
+- rm composer.lock
+- rm -Rf .git
 - cd ..
 - zip -r centry.zip ${REPO}
 - tar -zcf centry.tar.gz ${REPO}
