@@ -1,5 +1,6 @@
 # Centry Add-on
 
+[![Build Status](https://travis-ci.org/a3020/centry.svg?branch=master)](https://travis-ci.org/a3020/centry)
 [![Software License][ico-license]](LICENSE.txt)
 
 ## Introduction
