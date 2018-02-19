@@ -8,7 +8,7 @@ php:
 
 env:
  global:
- - REPO=centry
+ - REPO=a3020/centry
 
 before_install:
   - sudo apt-get install zip -y
@@ -30,7 +30,7 @@ deploy:
   file: centry.zip
   file: centry.tar.gz
   on:
-    repo: a3020/centry
+    repo: ${REPO}
     tags: true
 
 notifications:
