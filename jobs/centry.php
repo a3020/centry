@@ -166,21 +166,16 @@ final class Centry extends Job
     }
 
     /**
-     * Retrieve or regenerate API token.
-     *
-     * If token regeneration is disabled, we retrieve
-     * an existing API token from the config.
+     * Regenerate and retrieve API token.
      *
      * @return string
      */
     private function getAndUpdateApiToken()
     {
-        if ($this->config->get('centry.api.regenerate_token')) {
-            $this->config->save('centry.api.token', $this->generateApiToken());
-        }
+        $token = $this->generateApiToken();
+        $this->config->save('centry.api.token', $token);
 
-        $token = (string) $this->config->get('centry.api.token');
-        return $token ? $token : $this->generateApiToken();
+        return $token;
     }
 
     /**
@@ -189,11 +184,10 @@ final class Centry extends Job
      * The token is used to receive calls from external applications.
      *
      * The API token will be sent to Centry and stored encrypted.
-     * Centry is then able to send requests to this C5 instance.
+     * Centry Portal is then able to send requests to this C5 instance.
      *
-     * You can change the API token if you'd like.
-     * Just make sure you subscribe to Centry afterwards,
-     * so Centry has the most up to date API token.
+     * Each time Centry Add-on 'subscribes' / 'registers'
+     * a new token will be generated.
      *
      * @return string
      */

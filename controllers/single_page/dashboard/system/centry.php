@@ -33,7 +33,6 @@ final class Centry extends DashboardPageController
         $config->save('centry.enabled', (bool) $this->post('enabled'));
         $config->save('centry.endpoint', (string) $this->post('endpoint'));
         $config->save('centry.registration_token', (string) $this->post('registration_token'));
-        $config->save('centry.api.regenerate_token', (bool) $this->post('regenerate_token'));
         $config->save('centry.domains', $this->getDomains());
 
         foreach ($this->getApiMethods() as $handle => $name) {

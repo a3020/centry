@@ -14,7 +14,7 @@ final class Controller extends Package
 {
     protected $pkgHandle = 'centry';
     protected $appVersionRequired = '8.0';
-    protected $pkgVersion = '2.2.2';
+    protected $pkgVersion = '2.2.3';
     protected $pkgAutoloaderRegistries = [
         'src/Centry' => '\A3020\Centry',
     ];
@@ -58,7 +58,6 @@ final class Controller extends Package
 
         $this->config->save('centry.enabled', true);
         $this->config->save('centry.endpoint', self::CENTRY_PORTAL_DEFAULT_ENDPOINT);
-        $this->config->save('centry.api.regenerate_token', true);
     }
 
     public function upgrade()

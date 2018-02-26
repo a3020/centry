@@ -104,18 +104,6 @@ use Concrete\Core\Support\Facade\Url;
                         <?php echo t('Enable Centry'); ?>
                     </label>
                 </div>
-                <div>
-                    <label class="control-label launch-tooltip"
-                           title="<?php echo t("You can improve security by regenerating an API token each time Centry subscribes to the portal."); ?>"
-                           for="regenerate_token">
-                        <?php
-                        echo $form->checkbox('regenerate_token', 1, (bool) $config->get('centry.api.regenerate_token'));
-                        ?>
-                        <?php
-                        echo t('Regenerate API token each time subscriptions are updated');
-                        ?>
-                    </label>
-                </div>
             </div>
 
             <div class="form-group">
