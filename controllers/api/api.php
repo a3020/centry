@@ -6,14 +6,6 @@ use A3020\Centry\Controller\ApiBase;
 
 class Api extends ApiBase
 {
-    /**
-     * @todo to be implemented
-     */
-    protected function discover()
-    {
-        return [];
-    }
-
     protected function environment()
     {
         return $this->app->make(\A3020\Centry\Environment\Payload::class);
