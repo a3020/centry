@@ -77,10 +77,10 @@ final class Payload extends PayloadAbstract
             }
 
             return [
-                'file_id' => $file['fID'],
-                'file_name' => $file['fvFilename'],
-                'file_size' => $file['fvSize'],
-                'file_url' => $fileObject->getVersion()->getDownloadURL(),
+                'file_id' => (int) $file['fID'],
+                'file_name' => (string) $file['fvFilename'],
+                'file_size' => (int) $file['fvSize'],
+                'file_url' => (string) $fileObject->getVersion()->getDownloadURL(),
             ];
         }, $files);
     }
