@@ -54,7 +54,7 @@ final class Centry extends Job
                 $e = $e->getPrevious();
             }
 
-            $error = $e->getMessage() .'. '.$e->getTraceAsString();
+            $error = $e->getMessage() .' '.$e->getTraceAsString();
 
             /** @var \Concrete\Core\Logging\Logger $log */
             $log = $this->appInstance->make('log');
@@ -111,6 +111,10 @@ final class Centry extends Job
 
         if ($statusCode === 200) {
             return;
+        }
+
+        if ($statusCode === 0) {
+            throw new CouldNotSubscribeException(t('Host not found: %s', $this->getRegistrationEndpoint()));
         }
 
         $data = json_decode($response, true);
