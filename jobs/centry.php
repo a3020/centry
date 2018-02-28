@@ -85,6 +85,10 @@ final class Centry extends Job
         if (!$this->getRegistrationToken()) {
             throw new Exception(t('No registration token defined.'));
         }
+
+        if ($this->isLocalHost()) {
+            throw new Exceptiont(t("Centry Portal won't be able to connect to your local environment."));
+        }
     }
 
     /**
@@ -185,10 +189,8 @@ final class Centry extends Job
     /**
      * Generates an API token.
      *
-     * The token is used to receive calls from external applications.
-     *
-     * The API token will be sent to Centry and stored encrypted.
-     * Centry Portal is then able to send requests to this C5 instance.
+     * The API token will be sent to Centry Portal so
+     * it can then send requests to this C5 instance.
      *
      * Each time Centry Add-on 'subscribes' / 'registers'
      * a new token will be generated.
@@ -198,5 +200,15 @@ final class Centry extends Job
     private function generateApiToken()
     {
         return str_random(64);
+    }
+
+    /**
+     * @return bool
+     */
+    private function isLocalHost()
+    {
+        $localAddresses = ['127.0.0.1', '::1'];
+
+        return in_array($_SERVER['REMOTE_ADDR'], $localAddresses);
     }
 }
