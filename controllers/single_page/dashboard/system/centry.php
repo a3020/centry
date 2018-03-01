@@ -20,6 +20,7 @@ final class Centry extends DashboardPageController
         $this->set('job', $this->getJob());
         $this->set('config', $config);
         $this->set('apiMethods', $this->getApiMethods());
+        $this->set('token', $this->token);
     }
 
     public function save()
