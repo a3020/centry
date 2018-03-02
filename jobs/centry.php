@@ -87,7 +87,7 @@ final class Centry extends Job
         }
 
         if ($this->isLocalHost()) {
-            throw new Exceptiont(t("Centry Portal won't be able to connect to your local environment."));
+            throw new Exception(t("Centry Portal won't be able to connect to your local environment."));
         }
     }
 
