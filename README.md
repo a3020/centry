@@ -4,7 +4,7 @@
 [![Software License][ico-license]](LICENSE.txt)
 
 ## Introduction
-Centry allows you to connect concrete5 websites with a centralized portal.
+Centry Add-on allows you to connect concrete5 websites with a centralized portal.
 The clear overview and the ability to run various tasks via the portal
 are ideal for any developer or agency who works with concrete5 professionally.
 
@@ -16,16 +16,15 @@ Install the (free) add-on via the [marketplace](https://www.concrete5.org/market
 ![Centry Portal](https://user-images.githubusercontent.com/1431100/32143097-cdb4a1d2-bca4-11e7-9256-b3f28ae3da0c.png)
 
 
-## Self-hosted
+## Centry Portal
 
-Centry Portal is available as a [self-hosted version](https://centry.nl/centry-portal). It features like:
-- Scanning websites for errors
-- Scheduling Automated Jobs
-- An aggregated view of Log entries
-- Connecting unlimited websites
-- The ability to export websites to .csv
-
-With the self-hosted version you get full access to the source code.
+The add-on connects with [Centry Portal](https://centry.nl/centry-portal). From within the portal
+you can:
+- Scan websites for errors
+- Schedule scans
+- View Log entries from all websites
+- Connect unlimited websites
+- Export websites to .csv
 
 ## Links
 - https://centry.nl/centry-portal
