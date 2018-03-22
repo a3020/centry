@@ -14,7 +14,7 @@ final class Controller extends Package
 {
     protected $pkgHandle = 'centry';
     protected $appVersionRequired = '8.0';
-    protected $pkgVersion = '2.2.8';
+    protected $pkgVersion = '2.2.9';
     protected $pkgAutoloaderRegistries = [
         'src/Centry' => '\A3020\Centry',
     ];
@@ -37,8 +37,6 @@ final class Controller extends Package
 
     public function on_start()
     {
-        $this->loadDependencies();
-
         // The version of the API on this C5 installation.
         define('CENTRY_INSTANCE_API_VERSION', 1);
 
@@ -96,27 +94,5 @@ final class Controller extends Package
 
         $singlePage = Single::add($path, $pkg);
         $singlePage->update($this->getPackageName());
-    }
-
-    public function uninstall()
-    {
-        parent::uninstall();
-
-        $db = $this->app->make('database')->connection();
-        $db->executeQuery("DROP TABLE IF EXISTS CentrySchedules");
-    }
-
-    /**
-     * Load Composer files.
-     *
-     * If the C5 installation is Composer based, the vendor directory will
-     * be in the root directory. Therefore we first check if it's present.
-     */
-    private function loadDependencies()
-    {
-        $autoloadFile = $this->getPackagePath() . '/vendor/autoload.php';
-        if (file_exists($autoloadFile)) {
-            require_once $autoloadFile;
-        }
     }
 }

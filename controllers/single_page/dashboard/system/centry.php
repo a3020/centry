@@ -14,7 +14,6 @@ final class Centry extends DashboardPageController
         $config = $this->app->make(Repository::class);
 
         $this->set('linkToCentryPortal', $this->getLinkToCentryPortal());
-
         $this->set('endpoint', $this->getEndpoint());
         $this->set('shouldShowSubscribeButton', $this->getShouldShowSubscribeButton());
         $this->set('job', $this->getJob());
@@ -102,6 +101,7 @@ final class Centry extends DashboardPageController
     private function getDomains()
     {
         $domains = explode("\n", str_replace("\r", '', $this->post('domains')));
+
         return array_map('trim', $domains);
     }
 
@@ -120,8 +120,6 @@ final class Centry extends DashboardPageController
             'files_summary' => t('Files summary'),
             'users_summary' => t('Users summary'),
             'logs_summary' => t('Logs summary'),
-            'schedules' => t('Schedules'),
-            'schedules__post' => t('Schedules (write)'),
         ];
     }
 
