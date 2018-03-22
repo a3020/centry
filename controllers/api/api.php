@@ -55,10 +55,4 @@ class Api extends ApiBase
     {
         return $this->app->make(\A3020\Centry\Log\Summary\Payload::class);
     }
-
-    protected function schedules__post()
-    {
-        $controller = $this->app->make(\A3020\Centry\Schedule\StoreSchedules::class);
-        return $controller->handle();
-    }
 }

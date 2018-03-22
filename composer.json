@@ -3,8 +3,5 @@
     "description": "Allows communication from concrete5 to Centry Portal.",
     "type": "concrete5-package",
     "license": "MIT",
-    "minimum-stability": "stable",
-    "require": {
-        "a3020/cron-expression": "^1.2"
-    }
+    "minimum-stability": "stable"
 }
