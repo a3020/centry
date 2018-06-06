@@ -14,7 +14,7 @@ final class Controller extends Package
 {
     protected $pkgHandle = 'centry';
     protected $appVersionRequired = '8.0';
-    protected $pkgVersion = '2.3.0';
+    protected $pkgVersion = '2.3.1';
     protected $pkgAutoloaderRegistries = [
         'src/Centry' => '\A3020\Centry',
     ];
